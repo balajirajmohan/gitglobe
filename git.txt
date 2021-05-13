@@ -1,0 +1,91 @@
+#git commands #
+
+git config --global -e --->> To make changes on gitconfig file
+git config --global core.editor "code --wait" --->>> it will choose vs code as default editor
+git config --global core.autocrlf input ---->>> 
+git commit -a -m "message" --->>> skip git add every time
+git diff --staged ---->>> shows the difference in file between local and staging area in command line
+git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE" ---->>>> It will set visual studio code as default diff tool
+git log -->>> tells all commit, who have done and what message
+git log --oneline -->> short lst
+git show <commit id> - to check and see what excatly committed
+git restore --staged < file1, file2 ..... etc> - unstage files from local to staging
+
+###Browsing History ####
+git log - shows all commit from current time to old time with author, time, email id used.
+git log --oneline --->>> only displays the commit id and the commit message
+git log --oneline --stat ---->>> on a particular commit, it displaus what are the files that got changed and what is the commit message
+git log --stat --->> tells details about author, insertions and deletions etc of every commit
+git log --oneline --patch --->>> displays the actual file changes by using diff
+
+###filtering the history ####
+git log --oneline -3 --->>>> it displays the last 3 commits
+git log --oneline --author="author name" --->>> displays the commits by particular author
+git log --oneline --after="2020-08-04"(yy mm dd) ---> displays commit after a certain date
+git log --oneline --before="2020-08-04" ----> displays commit before a certain date
+git log --oneline --after="yesterday" or git log --oneline --after="one week ago" ---->>> relative days and dates
+git log --oneline --grep="Balaji" ---->> search all commits with keyword Balaji ( searches the keyword in commit message only)
+git log --oneline --S"OBJECTIVES" --->> Shows all commits where the word OBJECTIVE involves (it searches in code)
+git log --oneline -S"OBJECTIVES" --patch ---> Shows the commit as well as where excalty the code change happened
+
+
+##Formatting the output log###
+git log will give you whole 
+
+Viewing the history
+
+git log --stat # Shows the list of modified files
+git log --patch # Shows the actual changes (patches)
+Filtering the history
+git log -3 # Shows the last 3 entries
+git log --author=“Mosh”
+git log --before=“2020-08-17”
+git log --after=“one week ago”
+git log --grep=“GUI” # Commits with “GUI” in their message
+git log -S“GUI” # Commits with “GUI” in their patches
+git log hash1..hash2 # Range of commits
+git log file.txt # Commits that touched file.txt
+
+
+Formatting the log output
+git log --pretty=format:”%an committed %H”
+
+Creating an alias
+git config --global alias.lg “log --oneline"
+
+Viewing a commit
+git show HEAD~2 --> displays info about 2 commits farther from the latest commit 
+git show HEAD~2:file1.txt # Shows the version of file stored in this commit
+git show HEAD~2: --name-only ---> shows what are the file changed during this particular commit -- ********** 
+
+
+Comparing commits
+git diff HEAD~2 HEAD # Shows the changes between two commits
+git diff HEAD~2 HEAD file.txt # Changes to file.txt only
+
+Checking out a commit
+git checkout dad47ed # Checks out the given commit
+git checkout master # Checks out the master branch
+
+Finding a bad commit
+git bisect start
+git bisect bad # Marks the current commit as a bad commit
+git bisect good ca49180 # Marks the given commit as a good commit
+git bisect reset # Terminates the bisect session
+
+Finding contributors
+git shortlog
+
+Viewing the history of a file
+git log file.txt # Shows the commits that touched file.txt
+git log --stat file.txt # Shows statistics (the number of changes) for file.txt
+git log --patch file.txt # Shows the patches (changes) applied to file.txt
+
+Finding the author of lines
+git blame file.txt # Shows the author of each line in file.txt
+
+Tagging
+git tag v1.0 # Tags the last commit as v1.0
+git tag v1.0 5e7a828 # Tags an earlier commit
+git tag # Lists all the tags
+git tag -d v1.0 # Deletes the given tag 
